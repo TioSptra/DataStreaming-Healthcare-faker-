@@ -1,0 +1,21 @@
+{
+  "name": "stream_agg",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "topics": "room_data, payment_data, doctor_data",
+    "connection.url": "jdbc:postgresql://72.61.140.176:5433/postgres",
+    "connection.user": "postgres",
+    "connection.password": "postgres",
+    "jdbc.credentials.provider.class": "io.confluent.connect.jdbc.util.DefaultJdbcCredentialsProvider",
+    "dialect.name": "PostgreSqlDatabaseDialect",
+    "insert.mode": "insert",
+    "replace.null.with.default": "false",
+    "pk.mode": "none",
+    "pk.fields": "",
+    "auto.create": "true",
+    "value.converter.schema.registry.url": "http://schema-registry:8081"
+  }
+}
