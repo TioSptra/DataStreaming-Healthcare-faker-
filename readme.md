@@ -1,4 +1,4 @@
-> Proyek ini membangun end-to-end data pipeline untuk mengelola streaming data secara real-time — mulai dari data generator hingga visualisasi bisnis menggunakan Tableau. Seluruh sistem dijalankan di dalam Virtual Machine (VM) agar lingkungan terisolasi, stabil, dan mudah dikonfigurasi ulang.
+> Proyek ini membangun sebuah end-to-end data pipeline untuk mengelola streaming data secara real-time, mulai dari data generator(faker) hingga visualisasi bisnis menggunakan Tableau. Seluruh sistem dijalankan di dalam Virtual Machine (VM) agar lingkungan terisolasi, stabil, dan mudah dikonfigurasi ulang.
 
 ## Environment
 Pipeline dijalankan di **Virtual Machine (VM)** dengan spesifikasi:
@@ -23,7 +23,6 @@ Pipeline dijalankan di **Virtual Machine (VM)** dengan spesifikasi:
 ![Airbyte](images/demoairbyte.png)
 Proses integrasi data dari **Data Lake** ke **Data Warehouse** dilakukan menggunakan **Airbyte**.  
 Airbyte berperan sebagai *data movement tool* yang menghubungkan berbagai sumber data dan memindahkannya secara otomatis melalui konektor bawaan.
-
 >  Dalam pipeline ini, Airbyte digunakan untuk menyalin data dari **PostgreSQL (Data Lake)** ke **Google BigQuery (Data Warehouse)** secara terjadwal dan terkontrol.
 
 
@@ -44,9 +43,8 @@ Airbyte berperan sebagai *data movement tool* yang menghubungkan berbagai sumber
 
 # step by step data stream
 >Langkah-langkah untuk menjalankan pipeline **Data Stream** menggunakan Docker & Apache Flink
-- download JDBC Drivers di [confluent-hub](https://www.confluent.io/hub/)
-- Letakkan semua file `.jar` ke dalam folder:jars
-- semua library `faker` dan `confluent-kafka` telah ter-install di lokal maupun VM
+- download JDBC Drivers di [confluent-hub](https://www.confluent.io/hub/) dan Letakkan semua file `.jar` ke dalam folder:jars
+- library `faker` dan `confluent-kafka[avro,json,schemaregistry]` telah ter-install di lokalhost maupun VM
 - Build image untuk datastream:
     -       docker build -t stream:latest .
 - Jika pipeline dijalankan secara local (bukan di VM), ubah IP dari VM menjadi localhost.Kemudian berikan akses ke folder jars agar dapat di-mount ke container:
@@ -58,5 +56,6 @@ Airbyte berperan sebagai *data movement tool* yang menghubungkan berbagai sumber
 - masuk kedalam container jobmanager untuk menjalankan flink job:
     -       docker exec -it flink-jobmanager bash
 - Eksekusi job Python di dalam container Flink:
-    -       flink run -py /opt/pyjobs/*job.py(lakukan satu per satu)
+    -       flink run -py /opt/pyjobs/*job.py (masukan job secara satu per satu)
+- masukan connector.json ke dalam connector confluent:control center
 
