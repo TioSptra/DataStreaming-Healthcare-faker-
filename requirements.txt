@@ -1,3 +1,5 @@
 apache-flink==1.19.1
 psycopg[binary]
 requests
+faker
+confluent-kafka[avro,json,schemaregistry]
