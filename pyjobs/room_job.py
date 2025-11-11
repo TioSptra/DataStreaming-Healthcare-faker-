@@ -66,7 +66,7 @@ def main():
             room,
             COUNT(*)             AS total_patient
         FROM TABLE(
-            TUMBLE(TABLE treatment_src, DESCRIPTOR(event_ts), INTERVAL '10' MINUTE)
+            TUMBLE(TABLE treatment_src, DESCRIPTOR(event_ts), INTERVAL '15' MINUTE)
         )
         GROUP BY window_start, window_end, room
     """)

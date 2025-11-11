@@ -70,7 +70,7 @@ def main():
             COUNT(*)                AS total_patient,
             CAST(AVG(rating) AS DOUBLE) AS avg_rating
         FROM TABLE(
-            TUMBLE(TABLE treatment_src, DESCRIPTOR(event_ts), INTERVAL '5' MINUTE)
+            TUMBLE(TABLE treatment_src, DESCRIPTOR(event_ts), INTERVAL '10' MINUTE)
         )
         GROUP BY window_start, window_end, doctor, outcome
     """)

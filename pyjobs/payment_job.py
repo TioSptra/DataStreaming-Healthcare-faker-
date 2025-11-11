@@ -70,7 +70,7 @@ def main():
             CAST(SUM(amount) AS DOUBLE) AS total_amount,
             CAST(AVG(amount) AS DOUBLE) AS avg_amount
         FROM TABLE(
-            TUMBLE(TABLE treatment_src, DESCRIPTOR(event_ts), INTERVAL '60' SECOND)
+            TUMBLE(TABLE treatment_src, DESCRIPTOR(event_ts), INTERVAL '5' MINUTE)
         )
         GROUP BY window_start, window_end, payment_method
     """)

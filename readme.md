@@ -29,15 +29,15 @@ Airbyte berperan sebagai *data movement tool* yang menghubungkan berbagai sumber
 ## Dashboard
 > Terdapat 3 analisa interaktif untuk operasional rumah sakit.
 
-### Doctor Performance
+### Doctor Performance(10 minutes tumbling windows)
 ![doctor](images/doctor.png)
 > Dashboard ini memonitring kinerja dokter: jumlah pasien, rata‑rata rating, dan distribusi outcome.
 
-### Room Occupancy
+### Room Occupancy(15 minutes tumbling windows)
 ![room](images/room.png)
 > Dashboard ini memonitring okupansi per ruangan dan puncak jam untuk optimasi penjadwalan.
 
-### Patients Payments
+### Patients Payments(5 minutes tumbling windows)
 ![payment](images/payment.png)
 > Dashboard ini memonitring volume & nilai transaksi per metode pembayaran serta deteksi anomali.
 
